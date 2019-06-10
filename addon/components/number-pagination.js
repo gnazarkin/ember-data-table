@@ -7,10 +7,10 @@ export default Component.extend({
   classNames: ['data-table-pagination'],
   currentPage: computed('page', {
     get() {
-      return this.get('page') ? parseInt(this.get('page')) + 1 : 1;
+      return this.get('page') ? parseInt(this.get('page')) : 1;
     },
     set(key, value) {
-      this.set('page', value - 1);
+      this.set('page', value);
       return value;
     }
   }),
@@ -19,7 +19,7 @@ export default Component.extend({
   }),
   lastPage: computed('links', function() {
     const max = this.get('links.last.number') || -1;
-    return max ? max + 1 : max;
+    return max;
   }),
   isFirstPage: computed('firstPage', 'currentPage', function() {
     return this.get('firstPage') == this.get('currentPage');
